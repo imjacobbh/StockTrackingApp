@@ -1,0 +1,15 @@
+<resources>
+    <!-- Base application theme. -->
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">@color/colorAccent</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">#231F20</color> <!-- Color de fondo negro -->
+
+    <style name="Base.Theme.StockTrackingApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+    </style>
+</resources>
