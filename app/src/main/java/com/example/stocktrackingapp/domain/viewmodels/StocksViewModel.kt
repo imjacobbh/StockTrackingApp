@@ -5,10 +5,12 @@ import android.os.Looper
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.stocktrackingapp.R
 import com.example.stocktrackingapp.domain.interactor.StocksInteractor
 import com.example.stocktrackingapp.domain.model.StockResponseFromResult
 import com.example.stocktrackingapp.domain.model.StocksDomainModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import java.util.ArrayList
 import javax.inject.Inject
@@ -18,8 +20,8 @@ class StocksViewModel @Inject constructor(
     private val interactor: StocksInteractor
 ) : ViewModel() {
 
-
-    private val updateInterval = 15000L // Update every 15 seconds
+    private var updateJob: Job? = null
+    private val updateInterval = 60000L // Update every 60 seconds
     private val handler = Handler(Looper.getMainLooper())
 
     fun startUpdating() {
@@ -28,6 +30,7 @@ class StocksViewModel @Inject constructor(
     }
 
     fun stopPeriodicUpdates() {
+        updateJob?.cancel()
         handler.removeCallbacksAndMessages(null)
     }
 
@@ -49,12 +52,20 @@ class StocksViewModel @Inject constructor(
         stocksSymbols.remove(stock.symbol)
         interactor.updateUserStocks(stocksSymbols)
         setFlowState(StockFlowState.OnStockRemoved(stock))
-        startUpdating()
+        startPeriodicUpdates()
     }
 
     fun addStock(
         stockSymbol: String
     ) {
+        if (stocksSymbols.contains(stockSymbol)) {
+            setFlowState(StockFlowState.OnElementAlreadyAdded(R.string.stock_already_added_to_your_list))
+            return
+        }
+        if (stockSymbol.isEmpty() || stockSymbol == "Select") {
+            setFlowState(StockFlowState.OnElementInvalid(R.string.invalid_stock))
+            return
+        }
         stopPeriodicUpdates()
         stocksSymbols.add(stockSymbol)
         interactor.updateUserStocks(stocksSymbols)
@@ -64,7 +75,7 @@ class StocksViewModel @Inject constructor(
     }
 
     fun getUserStocks() {
-        viewModelScope.launch {
+        updateJob = viewModelScope.launch {
             setFlowState(StockFlowState.OnLoading)
             val responses = mutableListOf<StockResponseFromResult>()
             stocksSymbols = interactor.getUserStocksSymbols()
@@ -74,7 +85,11 @@ class StocksViewModel @Inject constructor(
                 responses.add(response)
             }
             setFlowState(StockFlowState.OnSuccess(responses.map { it.stock }))
-            //  setFlowState(StockFlowState.OnError(responses.map { it.errorOutputStringRes }))
+
+            val errorResponses = responses.mapNotNull { it.errorOutputStringRes }
+            if (errorResponses.isNotEmpty()) {
+                setFlowState(StockFlowState.OnError(errorResponses))
+            }
 
         }
     }
@@ -89,6 +104,8 @@ class StocksViewModel @Inject constructor(
         data class OnError(val error: List<Int?>) : StockFlowState()
         data class OnStockRemoved(val stockRemoved: StocksDomainModel) : StockFlowState()
         data class OnStockInserted(val stock: StocksDomainModel) : StockFlowState()
+        data class OnElementAlreadyAdded(val error: Int) : StockFlowState()
+        data class OnElementInvalid(val invalidStock: Int) : StockFlowState()
     }
 
 

@@ -1,14 +1,21 @@
 <resources>
-    <string name="app_name">StockTrackingApp</string>
+    <string name="app_name">Stock Tracking App</string>
     <string name="my_stocks">My Stocks</string>
     <string name="add_stocks">add stocks</string>
-    <string name="network_error">Verifica tu conexión a internet.</string>
-    <string name="unexpected_error">Oops! El servidor encontró un error al procesar la solicitud.</string>
+    <string name="network_error">Verify your internet connection.</string>
+    <string name="unexpected_error">Oops! An unexpected error occurred</string>
     <string name="new_stock_symbol">New Stock Symbol</string>
-    <string name="find">find</string>
-    <string name="ok">ok</string>
+    <string name="find">Select</string>
+    <string name="ok">OK</string>
     <string name="search_stocks_company">Search Stocks Company</string>
-    <string name="search">Search...</string>
+    <string name="search">Search…</string>
     <string name="addnewstock">addNewStock</string>
     <string name="high_day_stock">high day stock</string>
+    <string name="stock_already_added_to_your_list">Stock already added to your list</string>
+    <string name="invalid_stock">Select a valid Stock</string>
+    <string name="ask_to_eliminate">Do you want to remove the stock?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="empty" />
+    <string name="stock_removed">Stock removed</string>
 </resources>

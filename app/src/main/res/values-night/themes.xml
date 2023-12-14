@@ -3,7 +3,7 @@
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">@color/colorAccent</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="backgroundColor">#231F20</color> <!-- Color de fondo negro -->
+    <color name="backgroundColor">#231F20</color>
 
     <style name="Base.Theme.StockTrackingApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->

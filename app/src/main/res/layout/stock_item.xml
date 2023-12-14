@@ -17,8 +17,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:paddingTop="12dp"
-            android:paddingBottom="12dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guideline_1"
@@ -38,7 +38,21 @@
             app:layout_constraintEnd_toStartOf="@id/guideline_2"
             app:layout_constraintStart_toEndOf="@+id/guideline_1"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="3323.3" />
+            tools:text="3323.33" />
+
+        <ImageView
+            android:id="@+id/no_internet_price"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:contentDescription="@string/network_error"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_dialog_alert"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintStart_toEndOf="@+id/guideline_1"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
 
         <View
@@ -55,9 +69,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.20" />
+            app:layout_constraintGuide_percent="0.26" />
 
         <LinearLayout
+            android:id="@+id/high_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -89,30 +104,43 @@
                 tools:text="111.12" />
         </LinearLayout>
 
+        <ImageView
+            android:id="@+id/no_internet_high"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:contentDescription="@string/network_error"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_dialog_alert"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_3"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.40" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.60" />
+            app:layout_constraintGuide_percent="0.55" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.80" />
+            app:layout_constraintGuide_percent="0.775" />
 
 
         <LinearLayout
+            android:id="@+id/low_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -143,6 +171,21 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="100.12" />
         </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/no_internet_low"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:contentDescription="@string/network_error"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_dialog_alert"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintStart_toEndOf="@id/guideline_4"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

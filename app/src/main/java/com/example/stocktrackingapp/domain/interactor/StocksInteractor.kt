@@ -33,13 +33,21 @@ class StocksInteractor @Inject constructor(
         val stockDomain = result.entity?.let {
             StocksDomainModel(
                 symbol = it.symbol,
-                stockPrice = it.stockPrice,
-                low = it.low,
-                high = it.high
+                stockPrice = it.stockPrice.truncateToTwoDecimalPlaces(),
+                low = it.low.truncateToTwoDecimalPlaces(),
+                high = it.high.truncateToTwoDecimalPlaces()
             )
         } ?: StocksDomainModel(symbol)
         val errorOutputs = wrapStockResultExceptions(result.exception)
         return StockResponseFromResult(errorOutputs, stockDomain)
+    }
+
+    private fun String.truncateToTwoDecimalPlaces(): String {
+        val decimalIndex = indexOf('.')
+        if (decimalIndex != -1 && length > decimalIndex + 3) {
+            return substring(0, decimalIndex + 3)
+        }
+        return this
     }
 
     private fun wrapStockResultExceptions(exception: Exception?): Int? = when (exception) {
