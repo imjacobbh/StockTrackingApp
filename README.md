@@ -85,6 +85,10 @@ Feel free to explore and customize the app to suit your stock tracking needs!
 <img src="https://github.com/imjacobbh/StockTrackingApp/assets/56369955/46d2713d-6244-47de-b56f-736784f9f4fb" alt="Screenshot 1" width="250"/>  
 
 <img src="https://github.com/imjacobbh/StockTrackingApp/assets/56369955/65d66164-48ea-416d-b5a8-717f9952fb87" alt="Screenshot 1" width="250"/>  
+<img src="https://github.com/imjacobbh/StockTrackingApp/assets/56369955/b702653c-5677-40e2-bf4e-6687aafec498" alt="Screenshot 1" width="250"/>  
+
+
+### Feature: Long Press on stock item to remove it from your list
 
  
 
